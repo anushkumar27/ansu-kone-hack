@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Dashboard | KONE</title>
+
+  <link rel="shortcut icon" type="image/png" href="images/fav.gif"/>
+
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+  <!-- bootstrap-progressbar -->
+  <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+  <!-- bootstrap-daterangepicker -->
+  <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container body">
+    <div class="main_container">
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="">
+         
+         <!-- top tiles -->
+         <div class="row tile_count" style="padding-top: 20px;padding-left: 25px;">
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Current Floor</span>
+            <div class="count green" id="curr_floor"></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Current Payload</span>
+            <div class="count green" id="curr_payload"></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Avg. Speed</span>
+            <div class="count green" id="curr_speed"></div>
+           
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Usage (No. of People)</span>
+            <div class="count green" id="curr_people"></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> # of Stops</span>
+            <div class="count green" id="curr_stops"></div>
+          </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Avg. Time / Stop</span>
+            <div class="count green" id="curr_wait"></div>
+          </div>
+        </div>
+        <!-- /top tiles -->
+
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph x_panel">
+              <div class="row x_title">
+                <div class="col-md-6">
+                  <h3>Elevator Activities <small>Number of Stops / Floor</small></h3>
+                </div>
+              </div>
+              <div class="x_content">
+                <div class="demo-container" style="height:250px">
+                  <div id="placeholder3xx3" class="demo-placeholder" style="width: 100%; height:250px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+        
+            <div class="col-md-4">
+            <div class="x_panel fixed_height_320">
+             <div class="x_title">
+                <h2> Emeregency </h2>
+                <div class="clearfix"></div>
+                </div>
+                <center>
+                <input type="button" style="padding: 10px;" class="btn btn-danger" onclick="bla()" value=" Emergency Stop "></input>
+                <script type="text/javascript">
+                  function bla() {
+                    alert("Emergency");
+                  }
+                </script>
+                </center>
+                <br>
+              <div class="x_title">
+                <h2> Maintainance <small>Schudule</small></h2>
+                <div class="clearfix"></div>
+              </div>
+
+               <article class="media event">
+                  <a class="pull-left date">
+                    <p class="month">March</p>
+                    <p class="day">3</p>
+                  </a>
+                  <div class="media-body">
+                    <a class="title" href="#">Maintainance Service</a>
+                    <p>Maintainace run and motor testing</p>
+                  </div>
+                </article>
+
+                <article class="media event">
+                  <a class="pull-left date">
+                    <p class="month">April</p>
+                    <p class="day">23</p>
+                  </a>
+                  <div class="media-body">
+                    <a class="title" href="#">Maintainance Service</a>
+                    <p>General Checkup</p>
+                  </div>
+                </article>
+               
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="x_panel fixed_height_320">
+              <div class="x_title">
+                <h2>User Feedback<small>Performance</small></h2>
+
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="" style="width:100%">
+                  <tr>
+                    <th style="width:37%;">
+                      <p></p>
+                    </th>
+                    <th>
+                      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <p class="">Feedback</p>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <p class="">Percentage</p>
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                    </td>
+                    <td>
+                      <table class="tile_info">
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square green"></i>Overall Good </p>
+                          </td>
+                          <td id="1f">30%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square blue"></i>Cleanliness</p>
+                          </td>
+                          <td id="2f">10%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square purple"></i>Too many Stops </p>
+                          </td>
+                          <td id="3f">20%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square aero"></i>Too much Noise  </p>
+                          </td>
+                          <td id="4f">15%</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p><i class="fa fa-square red"></i>Can't say</p>
+                          </td>
+                          <td id="5f">30%</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="x_panel fixed_height_320">
+              <div class="x_title">
+                <h2>Wear Index <small> Health of the elevator</small></h2>
+               
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="dashboard-widget-content">
+                    <canvas width="160" height="80" id="foo" class="" style="width: 100%; height: 100%;"></canvas>
+                    <div class="goal-wrapper">
+                      <span id="gauge-text" class="gauge-value pull-left">0</span>
+                      <span class="gauge-value pull-left">%</span>
+                      <span id="goal-text" class="goal-value pull-right">100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <!-- /page content -->
+
+
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- jQuery Sparklines -->
+<script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- morris.js -->
+<script src="../vendors/raphael/raphael.min.js"></script>
+<script src="../vendors/morris.js/morris.min.js"></script>
+<!-- gauge.js -->
+<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- Skycons -->
+<script src="../vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="../vendors/Flot/jquery.flot.js"></script>
+<script src="../vendors/Flot/jquery.flot.pie.js"></script>
+<script src="../vendors/Flot/jquery.flot.time.js"></script>
+<script src="../vendors/Flot/jquery.flot.stack.js"></script>
+<script src="../vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="../vendors/DateJS/build/date.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../vendors/moment/min/moment.min.js"></script>
+<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js"></script>
+
+<!-- Flot -->
+<script>
+    //Data from the DB
+  var dataRecieved ="";
+  //Query to send to DB
+
+  // Functon to get data from DB
+
+  function getData(phpFile) {
+    var xhttp,data;
+    if (window.XMLHttpRequest){
+      xhttp = new XMLHttpRequest();
+    }
+    else{
+      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.onreadystatechange = function ()
+    {
+      if(xhttp.readyState==4 && xhttp.status==200)
+      {
+        data = xhttp.responseText;
+        if(!data.includes("Unsuccessful")){
+          dataRecieved = data;
+        }
+        else{
+          console.error("Unsuccessful retrieval")
+        }
+      }
+    };
+    xhttp.open("GET","http://192.175.5.204/konehack/elevator-simulation/"+phpFile+".php",false);
+    xhttp.send();
+  }
+
+  getData("people");  
+  var floorData = JSON.parse(dataRecieved);
+  document.getElementById('curr_floor').innerHTML = floorData[0]['curr_floor'] ;
+  document.getElementById('curr_payload').innerHTML = floorData[0]['weight'] + " Kgs";
+
+  var myETA = 0;
+  var wait = 0;
+  if(floorData.length > 3){
+    for(var i = 0; i < 3; i++){
+    myETA += calcETA(convertDate(floorData[i]['timestamp']) ,convertDate(floorData[i+1]['timestamp'])) / Math.abs( floorData[i]['curr_floor'] - floorData[i+1]['curr_floor']);
+    }
+    wait = myETA / 1000;
+    myETA /= 10000;
+
+  }
+
+  function convertDate(x){
+    var t = x.toString().split(/[- :]/);
+    return new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+  }
+
+  function calcETA(d1 ,d2){
+    return Math.abs(d1-d2);  // difference in milliseconds
+  }
+
+  document.getElementById('curr_speed').innerHTML = myETA + " m/s";
+  var tot = 0;
+  for(var i = 0; i < floorData.length - 1; i++){
+    tot += Math.abs( floorData[i]['num_people'] - floorData[i+1]['num_people']);
+  }
+  document.getElementById('curr_people').innerHTML = tot;
+  document.getElementById('curr_stops').innerHTML = floorData.length;
+  wait /= floorData.length;
+  document.getElementById('curr_wait').innerHTML = Math.round((wait+3)) + " s";
+  getData("feedback-get");
+  var myfeedback = JSON.parse(dataRecieved);
+  var f1 = 0;
+  var f2 = 0;
+  var f3 = 0;
+  var f4 = 0;
+  var f5 = 0;
+
+  var sum = 0;
+
+  for(var i = 0; i < myfeedback.length; i++){
+    if( myfeedback[i]['reason'] == "0"){
+      f1 +=  myfeedback[i]['num_reason'];
+      sum +=  parseInt(myfeedback[i]['num_reason']);
+    }else if ( myfeedback[i]['reason'] == "1"){
+      f2 +=  myfeedback[i]['num_reason'];
+      sum +=  parseInt(myfeedback[i]['num_reason']);
+    }else if ( myfeedback[i]['reason'] == "2"){
+      f1+=  myfeedback[i]['num_reason'];
+      sum +=  parseInt(myfeedback[i]['num_reason']);
+    }else if ( myfeedback[i]['reason'] == "3"){
+      f4 +=  myfeedback[i]['num_reason'];
+      sum +=  parseInt(myfeedback[i]['num_reason']);
+    }else if ( myfeedback[i]['reason'] == "4"){
+      f5 +=  myfeedback[i]['num_reason'];
+      sum +=  parseInt(myfeedback[i]['num_reason']);
+    }
+  }
+  document.getElementById("1f").innerHTML = parseInt(f1)* 100 / sum + "%";
+  document.getElementById("2f").innerHTML = parseInt(f2)* 100 / sum + "%";
+  document.getElementById("3f").innerHTML = parseInt(f3)* 100 / sum + "%";
+  document.getElementById("4f").innerHTML = parseInt(f4)* 100 / sum + "%";
+  document.getElementById("5f").innerHTML = parseInt(f5)* 100 / sum + "%";
+
+  getData("floor-freq");
+  var floorFreq = JSON.parse(dataRecieved);
+  console.log(floorFreq);
+  var myfloor = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+  for(var i = 0; i< floorFreq.length; i++){
+    myfloor[floorFreq[i]['floor'] - 1] = floorFreq[i]['freq'];
+  }
+
+  $(document).ready(function() {
+        //random data
+        var d1 = [
+        [0, myfloor[0]],
+        [1, myfloor[1]],
+        [2, myfloor[2]],
+        [3, myfloor[3]],
+        [4, myfloor[4]],
+        [5, myfloor[5]],
+        [6, myfloor[6]],
+        [7, myfloor[7]],
+        [8, myfloor[8]],
+        [9, myfloor[9]],
+        [10, myfloor[10]],
+        [11, myfloor[11]],
+        [12, myfloor[12]],
+        [13, myfloor[13]],
+        [14, myfloor[14]],
+        [15, myfloor[15]]
+        ];
+
+        //flot options
+        var options = {
+          series: {
+            curvedLines: {
+              apply: true,
+              active: true,
+              monotonicFit: true
+            }
+          },
+          colors: ["#26B99A"],
+          grid: {
+            borderWidth: {
+              top: 0,
+              right: 0,
+              bottom: 1,
+              left: 1
+            },
+            borderColor: {
+              bottom: "#7F8790",
+              left: "#7F8790"
+            }
+          }
+        };
+        var plot = $.plot($("#placeholder3xx3"), [{
+          label: "Stops",
+          data: d1,
+          lines: {
+            fillColor: "rgba(150, 202, 89, 0.12)"
+          }, //#96CA59 rgba(150, 202, 89, 0.42)
+          points: {
+            fillColor: "#fff"
+          }
+        }], options);
+      });
+    </script>
+    <!-- /Flot -->
+
+    <!-- jQuery Sparklines -->
+    <script>
+      $(document).ready(function() {
+        $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+          type: 'bar',
+          height: '40',
+          barWidth: 9,
+          colorMap: {
+            '7': '#a1a1a1'
+          },
+          barSpacing: 2,
+          barColor: '#26B99A'
+        });
+
+        $(".sparkline_two").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+          type: 'line',
+          width: '200',
+          height: '40',
+          lineColor: '#26B99A',
+          fillColor: 'rgba(223, 223, 223, 0.57)',
+          lineWidth: 2,
+          spotColor: '#26B99A',
+          minSpotColor: '#26B99A'
+        });
+      });
+    </script>
+    <!-- /jQuery Sparklines -->
+
+    <!-- Doughnut Chart -->
+    <script>
+      $(document).ready(function() {
+        var options = {
+          legend: false,
+          responsive: false
+        };
+
+        new Chart(document.getElementById("canvas1"), {
+          type: 'doughnut',
+          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+          data: {
+            labels: [
+            "Overall Good",
+            "Cleanliness",
+            "Too many Stops",
+            "Too much Noise",
+            "Can't say"
+            ],
+            datasets: [{
+              data: [f1, f2, f3, f4, f5],
+              backgroundColor: [
+              "#26B99A",
+              "#3498DB",
+              "#9B59B6" ,
+              "#BDC3C7" ,
+              "#E74C3C"
+              ],
+              hoverBackgroundColor: [
+              "#CFD4D8",
+              "#B370CF",
+              "#E95E4F",
+              "#36CAAB",
+              "#49A9EA"
+              ]
+            }]
+          },
+          options: options
+        });
+      });
+    </script>
+    <!-- /Doughnut Chart -->
+
+    <!-- bootstrap-daterangepicker -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+    <!-- /bootstrap-daterangepicker -->
+
+    <!-- morris.js -->
+    <script>
+      $(document).ready(function() {
+        Morris.Bar({
+          element: 'graph_bar',
+          data: [
+          { "period": "Jan", "Hours worked": 80 }, 
+          { "period": "Feb", "Hours worked": 125 }, 
+          { "period": "Mar", "Hours worked": 176 }, 
+          { "period": "Apr", "Hours worked": 224 }, 
+          { "period": "May", "Hours worked": 265 }, 
+          { "period": "Jun", "Hours worked": 314 }, 
+          { "period": "Jul", "Hours worked": 347 }, 
+          { "period": "Aug", "Hours worked": 287 }, 
+          { "period": "Sep", "Hours worked": 240 }, 
+          { "period": "Oct", "Hours worked": 211 }
+          ],
+          xkey: 'period',
+          hideHover: 'auto',
+          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+          ykeys: ['Hours worked', 'sorned'],
+          labels: ['Hours worked', 'SORN'],
+          xLabelAngle: 60,
+          resize: true
+        });
+
+        $MENU_TOGGLE.on('click', function() {
+          $(window).resize();
+        });
+      });
+    </script>
+    <!-- /morris.js -->
+
+    <!-- Skycons -->
+    <script>
+      var icons = new Skycons({
+        "color": "#73879C"
+      }),
+      list = [
+      "clear-day", "clear-night", "partly-cloudy-day",
+      "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+      "fog"
+      ],
+      i;
+
+      for (i = list.length; i--;)
+        icons.set(list[i], list[i]);
+
+      icons.play();
+    </script>
+    <!-- /Skycons -->
+
+    <!-- gauge.js -->
+    <script>
+      var opts = {
+        lines: 12,
+        angle: 0,
+        lineWidth: 0.4,
+        pointer: {
+          length: 0.75,
+          strokeWidth: 0.042,
+          color: '#1D212A'
+        },
+        limitMax: 'false',
+        colorStart: '#1ABC9C',
+        colorStop: '#1ABC9C',
+        strokeColor: '#F0F3F3',
+        generateGradient: true
+      };
+
+      function getDataReadings(eid) {
+        var xhttp,data;
+        if (window.XMLHttpRequest){
+          xhttp = new XMLHttpRequest();
+        }
+        else{
+          xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xhttp.onreadystatechange = function ()
+        {
+          if(xhttp.readyState==4 && xhttp.status==200)
+          {
+            data = xhttp.responseText;
+            if(!data.includes("Unsuccessful")){
+              dataRecieved = data;
+            }
+            else{
+              console.error("Unsuccessful retrieval")
+            }
+          }
+        };
+        xhttp.open("GET","http://192.175.5.204/konehack/elevator-simulation/query-elev.php?eid=" + eid,false);
+        xhttp.send();
+      }
+
+      function getWearRatio(read, metersPerFloor) {
+        var totalDist = 0;
+        for(var i = 0; i < read.length-1; i++) {
+            totalDist += Math.abs(read[i].curr_floor - read[i+1].curr_floor);
+        }
+        return totalDist * metersPerFloor;
+      }  
+
+      getDataReadings(4); //4th eid elevator
+      var myreadings = JSON.parse(dataRecieved);
+      
+      var wearRatio = getWearRatio(myreadings, 10); //10m per floor
+      wearRatio /= 1000; //assume 1km max service capability
+      console.log("wearRatio: " + wearRatio); 
+
+      var target = document.getElementById('foo'),
+      gauge = new Gauge(target).setOptions(opts);
+
+      gauge.maxValue = 100;
+      gauge.animationSpeed = 32;
+      gauge.set(wearRatio*100);
+      gauge.setTextField(document.getElementById("gauge-text"));
+
+    </script>
+    <!-- /gauge.js -->
+  </body>
+  </html>
