@@ -3,9 +3,7 @@
 
 	//Include database connection details
 	require_once('connect.php');
-	//Sanitize the POST values
-	//$query = $_POST['q'];
-	//echo $query;
+	
 	$query = "SELECT reason, count(*) as num_reason FROM `feedback` group by reason;";
 	$rows = array();
 	$a=mysqli_query($bd,$query);
